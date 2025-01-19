@@ -11,52 +11,49 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-   public function login(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
-        ]);
-    
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
-        }
-    
-        // Find the user by email
-        $user = User::where('email', $request->email)->first();
 
 
-   
+    public function login(Request $request)
+    {
+       
+       try {
           
-                 if (!$user || !Hash::check($request->password, $user->password)) {
-                    return response()->json(['error' => 'Invalid credentials'], 401);
-                }
-            
-                // Check if user exists and password matches
-                if ($user || Hash::check($request->password, $user->password)) {
-                   
-                    if ($user->is_verified === 1) {
-                       $user->expo_push_token = $request->expoPushToken;
-                        $user->save();
-                        Auth::login($user);
-                      $token = $user->createToken('MyAppToken')->plainTextToken;
-            
-                        return response()->json([
-                            'user' => $user,
-                            'token' => $token,
-                        ], 200);
-                    } else {
-                        return response()->json([
-                            'user' => $user,
-                            'massege' => "unverified",
-                        ], 200);
-            
-                    }
-                }
-            
-                
-     
-
-
+         $user = User::where('email', $request->email)->first();
+         
+            if (!$user) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
     
+          if (!Hash::check($request->password, $user->password)) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+    
+            if ($user->is_verified !== 1) {
+                return response()->json([
+                    'message' => 'User is not verified',
+                    'user' => $user
+                ], 200);
+            }
+    
+                // if (!$request->expoPushToken) {
+                //     return response()->json(['error' => 'Something went wrong. Please try again later.'], 500);
+                // }
+            // $user->expo_push_token = $request->expoPushToken;
+            // $user->save();
+           $token = $user->createToken('MyAppToken')->plainTextToken;
+    
+            return response()->json([
+                'user' => $user,
+                'token' => $token,
+            ], 200);
+    
+        } catch (\Exception $e) {
+             \Log::error('Login error: ' . $e->getMessage());
+           return response()->json(['error' => 'Something went wrong. Please try again later.'], 500);
+        }
     }
+    
+
+
+
 }

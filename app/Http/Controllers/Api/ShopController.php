@@ -41,13 +41,18 @@ class ShopController extends Controller
             ], 401); // Unauthorized response
         }
 
-        // Handle file upload for shop_photo
-        $filePath = null;
-        if ($request->hasFile('shop_photo')) {
-            $file = $request->file('shop_photo');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads/shops', $fileName, 'public');
-        }
+                    // Handle file upload for shop_photo
+                    $filePath = null;
+                    if ($request->hasFile('shop_photo')) {
+                        $file = $request->file('shop_photo');
+                        $fileName = time() . '_' . $file->getClientOriginalName();
+                        // Move the file to the public folder (within 'uploads/shops')
+                        $file->move(public_path('uploads/shops'), $fileName);
+                        
+                        // Store only the relative path in the database
+                        $filePath = 'uploads/shops/' . $fileName;
+                    }
+
 
         // Create a new shop record in the database
         $shop = Shop::create([

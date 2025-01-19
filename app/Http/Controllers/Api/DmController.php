@@ -36,20 +36,33 @@ class DmController extends Controller
         $data = $request->only(['dm_name', 'dm_address', 'dm_phone', 'dm_email', 'is_approved']);
         $data['user_id'] = $user_id;  // Add the authenticated user's ID to the data
 
-        // Handle face photo upload
-        if ($request->hasFile('face_photo')) {
-            $data['face_photo'] = $request->file('face_photo')->store('uploads/face_photos', 'public');
-        }
+                    // Handle face photo upload
+            if ($request->hasFile('face_photo')) {
+                $file = $request->file('face_photo');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                // Move the file to the public folder and store the relative path in the database
+                $file->move(public_path('uploads/face_photos'), $fileName);
+                $data['face_photo'] = 'uploads/face_photos/' . $fileName;
+            }
 
-        // Handle ID card upload
-        if ($request->hasFile('id_card')) {
-            $data['id_card'] = $request->file('id_card')->store('uploads/id_cards', 'public');
-        }
+            // Handle ID card upload
+            if ($request->hasFile('id_card')) {
+                $file = $request->file('id_card');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                // Move the file to the public folder and store the relative path in the database
+                $file->move(public_path('uploads/id_cards'), $fileName);
+                $data['id_card'] = 'uploads/id_cards/' . $fileName;
+            }
 
-        // Handle contract PDF upload
-        if ($request->hasFile('pdf_contract')) {
-            $data['pdf_contract'] = $request->file('pdf_contract')->store('uploads/pdf_contracts', 'public');
-        }
+            // Handle contract PDF upload
+            if ($request->hasFile('pdf_contract')) {
+                $file = $request->file('pdf_contract');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                // Move the file to the public folder and store the relative path in the database
+                $file->move(public_path('uploads/pdf_contracts'), $fileName);
+                $data['pdf_contract'] = 'uploads/pdf_contracts/' . $fileName;
+            }
+
 
         // Create the DM (Delivery Man) record
         $dm = Dm::create($data);

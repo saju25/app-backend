@@ -45,11 +45,18 @@ class ProductAddController extends Controller
             // Automatically set the shop_id to the authenticated user's shop_id
             $product->shop_id = $shop->id;
     
-            // Handle file upload for product photo if any
-            if ($request->hasFile('product_photo')) {
-                $product->product_photo = $request->file('product_photo')->store('products', 'public');
-            }
-    
+           // Handle file upload for product photo if any
+                if ($request->hasFile('product_photo')) {
+                    $file = $request->file('product_photo');
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    // Move the file to the public folder (within 'uploads/products')
+                    $file->move(public_path('uploads/products'), $fileName);
+                    
+                    // Store only the relative path in the database
+                    $product->product_photo = 'uploads/products/' . $fileName;
+                }
+
+
             // Save the product
             $product->save();
 
