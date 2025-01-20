@@ -56,45 +56,24 @@ class RegisterController extends Controller
 
     public function otpVerification(Request $request, $id)
     {
-        // Validate incoming request
-        $request->validate([
-            'otp_code' => 'required|integer',
-            'expo_push_token' => 'required|string', // Add validation for expo_push_token
-        ]);
+      
     
-        // Find the user by ID
-        $user = User::find($id);
-    
-        // Check if the user exists
-        if (!$user) {
+       $user = User::find($id);
+
+      if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
     
-        // Check if the provided OTP matches the user's OTP
-        if ($user->otp_code == $request->otp_code) {
-            // Mark the user as verified
+        if ((string)$user->otp_code === (string)$request->otp_code) {
             $user->is_verified = 1;
-            $user->otp_code = null;  // Clear OTP after successful verification
-            // $user->expo_push_token = $request->expo_push_token;  // Save expo push token (if needed)
-            $user->email_verified_at = now();  // Set the email_verified_at field (optional)
+            $user->otp_code = null;  
+            $user->expo_push_token = $request->expo_push_token;  
+            $user->email_verified_at = now(); 
+            $user->save();
+          
     
-            try {
-                // Save the changes to the database
-                $user->save();
-            } catch (\Exception $e) {
-                Log::error('Error saving user data:', ['error' => $e->getMessage()]);
-                return response()->json(['message' => 'Error saving user data', 'error' => $e->getMessage()], 500);
-            }
-    
-            // Generate an API token using Laravel Sanctum
-            try {
-                $token = $user->createToken('MyAppToken')->plainTextToken;
-            } catch (\Exception $e) {
-                Log::error('Error generating token:', ['error' => $e->getMessage()]);
-                return response()->json(['message' => 'Error generating token', 'error' => $e->getMessage()], 500);
-            }
-    
-            // Respond with the token and user data
+            
+            $token = $user->createToken('MyAppToken')->plainTextToken;
             return response()->json([
                 'token' => $token,
                 'user' => $user,

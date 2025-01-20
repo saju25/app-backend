@@ -35,12 +35,10 @@ class LoginController extends Controller
                 ], 200);
             }
     
-                // if (!$request->expoPushToken) {
-                //     return response()->json(['error' => 'Something went wrong. Please try again later.'], 500);
-                // }
-            // $user->expo_push_token = $request->expoPushToken;
-            // $user->save();
-           $token = $user->createToken('MyAppToken')->plainTextToken;
+            
+            $user->expo_push_token = $request->expoPushToken;
+            $user->save();
+            $token = $user->createToken('MyAppToken')->plainTextToken;
     
             return response()->json([
                 'user' => $user,
