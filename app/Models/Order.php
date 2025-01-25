@@ -17,6 +17,7 @@ class Order extends Model
         'total',
         'driver_id',
         'status',
+        'prescription_photo',
     ];
 
     public function orderItems()

@@ -15,8 +15,11 @@ use App\Http\Controllers\Api\DmController;
 use App\Http\Controllers\Api\DriverController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PrescriptionOrderController;
 use App\Http\Controllers\Api\ProductAddController;
 use App\Http\Controllers\Api\ShopLocationController;
+use App\Http\Controllers\DeliveryFeeController;
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -57,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Order-related routes
     Route::post('/place-order', [OrderController::class, 'placeOrder']);
+    Route::post('/Prescription-order', [PrescriptionOrderController::class, 'PrescriptionOrder']);
     Route::post('/update-order/{id}', [OrderController::class, 'updateOrder']);
     Route::get('/order', [OrderController::class, 'getOrder']);
     Route::get('/shop-order/{id}', [OrderController::class, 'shopOrder']);
@@ -88,6 +92,10 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Driver-related routes
     Route::get('/driver/{id}', [DriverController::class, 'getDriverData']);
+   
+    // Delivery Free routes
+    Route::post('/free-add', [DeliveryFeeController::class, 'store']);
+    Route::get('/free-get', [DeliveryFeeController::class, 'index']);
     
     // Order completion-related routes
     Route::put('/complete-order/{id}', [OrderController::class, 'completeOrder']);

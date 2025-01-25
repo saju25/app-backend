@@ -34,9 +34,6 @@ class DeliveryRequestController extends Controller
             'shop_id' => $shop->id,
         ]);
         
-         // Broadcast the event to notify the driver in real-time
-    broadcast(new DeliveryRequestUpdated($deliveryRequest, $validated['driver_id']));
-    
         return response()->json([
             'message' => 'Delivery request created successfully',
             'data' => $deliveryRequest
@@ -112,7 +109,7 @@ class DeliveryRequestController extends Controller
         $order = Order::find($id);
 
         $order->driver_id = $driver_id->id;
-        $order->status = 'accepted';
+        $order->status = 'accepté';
         $order->save();
 
         // Delete the previous delivery requests for this order

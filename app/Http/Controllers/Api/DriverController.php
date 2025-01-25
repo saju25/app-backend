@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryFree;
 use App\Models\Dm;
 use App\Models\DriverLocation;
 use Illuminate\Http\Request;
@@ -49,4 +50,7 @@ class DriverController extends Controller
             'data' => $driver,
         ]);
     }
+
+
+
 }
