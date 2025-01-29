@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'otp_code',
         'is_verified',
+        'role',
     ];
 
     /**

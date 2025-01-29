@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('otp_code')->nullable();
             $table->tinyInteger('is_verified')->default(0);
             $table->string('password');
+            $table->string('role')->nullable();
             $table->rememberToken();
             $table->string('expo_push_token')->nullable();
             $table->timestamps();

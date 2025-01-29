@@ -38,8 +38,9 @@ class DeliveryManLocationController extends Controller
      }
      public function deliverynamLocationGet()
      {
-          $deliveryMan = Dm::with('locations')->get();
-          return response()->json($deliveryMan);
+        $deliveryMan = Dm::with('locations')->where('is_approved', true)->get();
+
+        return response()->json($deliveryMan);
       }
        
 
@@ -61,7 +62,13 @@ class DeliveryManLocationController extends Controller
      
          $user = Auth::user();
          $dmid = Dm::where('user_id', $user->id)->first();
-     
+         $location = DeliveryManLocation::where('delivery_man_id', $dmid->id)->first();
+         if ($location) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Location record found.',
+            ], 404);
+        }
          // Create a new location record
          $location = DeliveryManLocation::create([
              'delivery_man_id' => $dmid->id,
@@ -87,13 +94,7 @@ class DeliveryManLocationController extends Controller
              'latitude' => 'required|numeric',
              'longitude' => 'required|numeric',
          ]);
-     
-         if ($validator->fails()) {
-             return response()->json([
-                 'success' => false,
-                 'errors' => $validator->errors(),
-             ], 422);
-         }
+
      
          $user = Auth::user();
          $dmid = Dm::where('user_id', $user->id)->first();
@@ -105,25 +106,21 @@ class DeliveryManLocationController extends Controller
              ], 404);
          }
      
-         // Find the existing location record
+      
          $location = DeliveryManLocation::where('delivery_man_id', $dmid->id)->first();
-     
          if (!$location) {
-             return response()->json([
-                 'success' => false,
-                 'message' => 'Location record not found.',
-             ], 404);
-         }
-     
-         // Update the location data
+            return response()->json([
+                'success' => false,
+                'message' => 'Location record not found.',
+            ], 404);
+        }
          $location->update([
              'latitude' => $request->input('latitude'),
              'longitude' => $request->input('longitude'),
              'is_avialable' => true,
          ]);
      
-         // Fire the event
-         broadcast(new DriverLocationUpdated($location));  // Broadcast the updated location
+        broadcast(new DriverLocationUpdated($location)); 
      
          return response()->json([
              'success' => true,

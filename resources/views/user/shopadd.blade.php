@@ -1,11 +1,12 @@
-<!-- resources/views/shops/create.blade.php -->
 
-<x-app-layout>
+<x-guest-layout>
     <div class="container">
+        <div class=" d-flex justify-content-center ">
+        <div class="page section-header col-md-6 bg-white  mt-5 mb-4 p-4">
         <h1>Add New Shop</h1>
 
         <!-- Shop Creation Form -->
-        <form action="{{ route('shops.store') }}" method="POST" enctype="multipart/form-data">
+        <form class=" gap-3" action="{{ route('shops.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Shop Name -->
@@ -65,4 +66,6 @@
             <button type="submit" class="btn btn-primary">Save Shop</button>
         </form>
     </div>
-</x-app-layout>
+</div>
+    </div>
+</x-guest-layout>

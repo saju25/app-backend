@@ -17,9 +17,9 @@ class CreateDmTable extends Migration
             $table->string('dm_address');
             $table->string('dm_phone')->unique();
             $table->string('dm_email')->unique();
-            $table->string('face_photo');
-            $table->string('id_card');
-            $table->string('pdf_contract');
+            $table->string('face_photo')->nullable();
+            $table->string('id_card')->nullable();
+            $table->string('pdf_contract')->nullable();
             $table->boolean('is_approved')->default(false); 
             $table->timestamps();
         });

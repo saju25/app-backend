@@ -44,7 +44,7 @@ class LoginController extends Controller
                 'user' => $user,
                 'token' => $token,
             ], 200);
-    
+  
         } catch (\Exception $e) {
              \Log::error('Login error: ' . $e->getMessage());
            return response()->json(['error' => 'Something went wrong. Please try again later.'], 500);

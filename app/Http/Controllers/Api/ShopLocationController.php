@@ -27,7 +27,7 @@ class ShopLocationController extends Controller
     }
     public function getLocationmap()
     {
-        $shops = Shop::with('location')->get(); // Fetch all shops with their related locations
+        $shops = Shop::with('location')->where('is_approved', true)->get(); // Fetch all shops with their related locations
         return response()->json($shops); // Return the data as JSON
     }
 

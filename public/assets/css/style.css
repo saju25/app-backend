@@ -1,0 +1,315 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    background-color: #25a8d6;
+    color: #fff;
+    padding: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+
+.navbar-light .navbar-nav .nav-link {
+    color: white !important;
+  }
+
+/* Hero Section Styling */
+.hero {
+    background-color: #2980B9;
+    color: #fff;
+    text-align: center;
+    padding: 60px 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #C0392B;
+}
+
+/* Featured Categories Section */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background-color: #ECF0F1;
+   
+}
+
+.category {
+    text-align: center;
+    width: 30%;
+}
+
+.category img {
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.category h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+/* Bestsellers Section */
+.bestsellers {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.bestsellers h2 {
+    margin-bottom: 40px;
+}
+
+.product {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.product h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.product p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.product button {
+    padding: 10px 20px;
+    background-color: #2980B9;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #3498DB;
+}
+
+/* Offers Section */
+.offers {
+    text-align: center;
+    background-color: #F39C12;
+    color: white;
+    padding: 40px 20px;
+}
+
+.offers h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.offers p {
+    font-size: 1.2rem;
+}
+
+/* Newsletter Section */
+.newsletter {
+    text-align: center;
+    background-color: #BDC3C7;
+    padding: 40px 20px;
+}
+
+.newsletter h2 {
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.newsletter input[type="email"] {
+    padding: 10px;
+    width: 250px;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #C0392B;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #2C3E50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+footer .footer-links ul {
+    list-style: none;
+    display: inline-flex;
+}
+
+footer .footer-links ul li {
+    margin-right: 20px;
+}
+
+footer .footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .social-icons a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+}
+input{
+    display: block;
+    width: 100%;
+    padding: 5px 5px;
+}
+.check_box{
+    width: 20px;
+    height: 20px;
+}
+.btn{
+   background-color: #25a8d6;
+   color: white;
+    padding: 5px 10px;
+}
+.btn_cancel{
+   background-color: red;
+   color: white;
+   padding: 5px 10px;
+}
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 10;
+    left: 0;
+    width: 250px;
+    background-color:#25a8d6;
+    padding-top: 80px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar a {
+    color: #ffffff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #39dbb3;
+}
+
+.sidebar a:hover {
+    background-color: #54c0e7;
+}
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+  }
+
+/* Push content to the right when sidebar is open */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* When sidebar is collapsed, hide it */
+.sidebar.collapsed {
+    transform: translateX(-250px);
+}
+
+/* Hamburger button for small screens */
+.navbar-toggler {
+    border: none;
+}
+table#myTable {
+    width: 100%;
+    border-collapse: collapse; /* Ensures the borders between cells are merged */
+}
+
+table#myTable th, table#myTable td {
+    text-align: center; /* Centers the text inside the table cells */
+    padding: 8px; /* Adds padding for better readability */
+}
+.navbar-expand-md{
+    border-radius: 50%;
+}
+.nav_container{
+    position: relative;
+}
+.nav_div{
+    position: fixed;
+    top: 68px;
+    right: 10px;
+}
+.conten_div{
+    margin-top: 68px;
+}
+.otp_topmar{
+    margin-top: 100px;
+}
+
+
+

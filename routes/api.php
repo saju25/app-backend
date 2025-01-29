@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\ShopApprovedController;
 use App\Http\Controllers\Api\AddToCartController;
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\DeliveryManLocationController;
 use App\Http\Controllers\Api\DeliveryRequestController;
 use App\Http\Controllers\Api\DmController;
@@ -34,7 +35,7 @@ Route::get('/resend-otp/{id}', [RegisterController::class, 'resendOtp'])->name('
 
 
 Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'login'])->name('api-login');
 Route::middleware('auth:sanctum')->group(function () {
     // User-related routes
     Route::get('/user', [UserController::class, 'getUserData']);
@@ -96,6 +97,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Delivery Free routes
     Route::post('/free-add', [DeliveryFeeController::class, 'store']);
     Route::get('/free-get', [DeliveryFeeController::class, 'index']);
+
+    //banner routes
+    Route::get('/banner', [BannerController::class, 'index']);
     
     // Order completion-related routes
     Route::put('/complete-order/{id}', [OrderController::class, 'completeOrder']);

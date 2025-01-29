@@ -27,7 +27,7 @@ class AuthenticatedSessionController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            if ($user->is_activated == 1) {
+            if ($user->is_verified == 1) {
                 $request->authenticate();
                  $request->session()->regenerate();
                 return redirect()->to('/');
