@@ -42,7 +42,7 @@
                          <td>{{ $driver->id  }}</td> 
                          <td>
                             <a href="{{ asset($driver->face_photo ) }}">
-                                <img src="{{ asset($driver->face_photo ) }}" alt="" width="100px" height="100px">
+                                <img src="{{ asset($driver->face_photo ) }}" alt="" width="100px" height="50px">
                             </a>
                               
                         </td> 
@@ -51,7 +51,7 @@
                          </td> 
                          <td>
                             <a href="{{ asset($driver->id_card  ) }}">
-                                <img src="{{ asset($driver->id_card  ) }}" alt="" width="100px" height="100px">
+                                <img src="{{ asset($driver->id_card  ) }}" alt="" width="100px" height="50px">
                             </a>
                         </td> 
                        

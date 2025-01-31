@@ -17,6 +17,12 @@ use function PHPUnit\Framework\isEmpty;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/payment-view', function () {
+    return view('payment');
+});
+Route::get('/payment-fail', function () {
+    return view('payment-fail');
+});
 
 // OTP Verified Route
 Route::post('verifyotp', [RegisteredUserController::class, 'useractivation'])->name('verifyotp');

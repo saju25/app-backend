@@ -235,10 +235,17 @@ input{
    color: white;
     padding: 5px 10px;
 }
+.btn a{
+
+    font-size: 12px !important;
+}
 .btn_cancel{
    background-color: red;
    color: white;
    padding: 5px 10px;
+}
+.btn_cancel a{
+   font-size: 12px !important;
 }
 .sidebar {
     height: 100vh;
