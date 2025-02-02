@@ -13,7 +13,6 @@ class PaymentController extends Controller
         $order = Order::find($id);
         $order->status = "payé";
         $order->save();
-        dd($order);
         return view('payment',);
     }
 }
