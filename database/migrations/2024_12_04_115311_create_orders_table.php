@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->string('total')->nullable(); 
             $table->string('driver_id')->nullable(); 
             $table->string('status')->default('En Attente');
+            $table->string('payment')->default('non rémunéré');
             $table->string('prescription_photo')->nullable(); 
             $table->timestamps(); 
         });

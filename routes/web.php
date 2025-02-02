@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminWebController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductAddController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -17,12 +18,13 @@ use function PHPUnit\Framework\isEmpty;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/payment-view', function () {
-    return view('payment');
-});
+
 Route::get('/payment-fail', function () {
     return view('payment-fail');
 });
+
+
+Route::get('/payment-view/{id}', [PaymentController::class, 'paymentsuccess'])->name('payment_success');
 
 // OTP Verified Route
 Route::post('verifyotp', [RegisteredUserController::class, 'useractivation'])->name('verifyotp');
