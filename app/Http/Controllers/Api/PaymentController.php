@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function paymentsuccess($id)
+    public function paymentsuccess($id,$uniqueid)
     {
         $order = Order::find($id);
-        $order->status = "payé";
-        $order->save();
-        return view('payment',);
+        if ($order->paymentid === "$uniqueid" ) {
+            $order->payment = "payé";
+            $order->save();
+            return view('payment');
+        }
+   
     }
 }

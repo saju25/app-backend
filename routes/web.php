@@ -24,7 +24,7 @@ Route::get('/payment-fail', function () {
 });
 
 
-Route::get('/payment-view/{id}', [PaymentController::class, 'paymentsuccess'])->name('payment_success');
+Route::get('/payment-view/{id}/{uniqueid}', [PaymentController::class, 'paymentsuccess'])->name('payment_success');
 
 // OTP Verified Route
 Route::post('verifyotp', [RegisteredUserController::class, 'useractivation'])->name('verifyotp');

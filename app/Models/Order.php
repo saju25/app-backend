@@ -18,6 +18,7 @@ class Order extends Model
         'driver_id',
         'status',
         'payment',
+        'paymentid',
         'prescription_photo',
     ];
 

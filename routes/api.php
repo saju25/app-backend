@@ -21,14 +21,16 @@ use App\Http\Controllers\Api\ProductAddController;
 use App\Http\Controllers\Api\ShopLocationController;
 use App\Http\Controllers\DeliveryFeeController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
 
 
 // OTP Verified Route
 Route::post('verifyotp/{id}', [RegisterController::class, 'otpVerification'])->name('verifyotp');
 Route::get('/resend-otp/{id}', [RegisterController::class, 'resendOtp'])->name('resend-otp');
+Route::get('/resend-otp-email/{email}', [RegisterController::class, 'resendOtpInemail'])->name('resend-otp-email');
+Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwordChange'])->name('passwordc_hange');
 
 
 
@@ -39,6 +41,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('api-login');
 Route::middleware('auth:sanctum')->group(function () {
     // User-related routes
     Route::get('/user', [UserController::class, 'getUserData']);
+    Route::get('/user-order-verify/{id}', [UserController::class, 'getUserOrder']);
     Route::get('/user-shop/{id}', [UserController::class, 'shopUser']);
     Route::get('/user-driver/{id}', [UserController::class, 'driverUser']);
     Route::get('/user-order/{id}', [UserController::class, 'orderUser']);

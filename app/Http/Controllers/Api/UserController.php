@@ -9,17 +9,49 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     public function getUserData()
     {
         $user = Auth::user();
-
         return response()->json([
-            'user' => $user
+                    'user' => $user,
+                ]);
+    }
+
+
+    public function getUserOrder($id)
+    {
+        $user = Auth::user();
+    
+        // // Generate a unique ID (UUID)
+        $uniqueId = Str::uuid();
+    
+        // Find the order by ID
+        $order = Order::find($id);
+    
+        // Check if the order exists
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+    
+        // Assign the unique payment ID to the order
+        $order->paymentid = $uniqueId;
+    
+        // Save the order with the new payment ID
+        $order->save();
+    
+        // Return the user, unique ID, and updated order
+        return response()->json([
+            'user' => $user,
+            'unique_id' => $uniqueId,
+             'order' => $order,
         ]);
     }
+
+
     public function shopUser($id)
     {
         // Fetch the shop by its ID
