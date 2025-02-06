@@ -20,6 +20,8 @@ class Order extends Model
         'payment',
         'paymentid',
         'prescription_photo',
+        'latitude',
+        'longitude',
     ];
 
     public function orderItems()

@@ -68,6 +68,8 @@ class OrderController extends Controller
                             'delivery_address' => $request->delivery_address,
                             'phone' => $request->phone,
                             'total' => $request->total,
+                            'latitude' => $request->latitude,
+                            'longitude' => $request->longitude,
                         ]);
 
                     foreach ($cartItems as $cartItem) {

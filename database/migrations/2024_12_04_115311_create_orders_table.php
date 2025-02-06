@@ -19,7 +19,9 @@ class CreateOrdersTable extends Migration
              $table->string('status')->default('En Attente');
             $table->string('payment')->default('non rémunéré');
             $table->string('paymentid')->nullable(); 
-            $table->string('prescription_photo')->nullable(); 
+            $table->string('prescription_photo')->nullable();
+            $table->decimal('latitude', 10, 7)->nullable(); // Latitude for the location
+            $table->decimal('longitude', 10, 7)->nullable(); // Longitude for the location
             $table->timestamps(); 
         });
     }

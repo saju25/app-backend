@@ -26,6 +26,8 @@ class PrescriptionOrderController extends Controller
                     'shop_id' => $request->shop_id,
                     'delivery_address' => $request->delivery_address,
                     'phone' => $request->phone,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
                 ]);
 
                 if ($request->hasFile('prescription')) {
