@@ -12,7 +12,7 @@ class WelcomeMail extends Mailable
 
     public $email;
     public $otp_code;
-    public $fullname;
+    public $name;
 
     /**
      * Create a new message instance.
@@ -21,11 +21,11 @@ class WelcomeMail extends Mailable
      * @param string $otp_code
      * @param string $fullname
      */
-    public function __construct($email, $otp_code, $fullname)
+    public function __construct($email, $otp_code, $name)
     {
         $this->email = $email;
         $this->otp_code = $otp_code;
-        $this->fullname = $fullname;
+        $this->name = $name;
     }
 
     /**

@@ -1,21 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Platform</title>
-</head>
-<body>
-    <h1>Welcome, {{ $fullname }}!</h1>
-    <p> Voici votre code OTP pour accéder à votre compte :</p>
-    <p><strong>{{ $otp_code }}</strong></p>
-    <p>Ce code est valable pour une durée limitée. Ne le partagez avec personne.
-
-        Si vous n'avez pas demandé ce code, veuillez ignorer cet email.
-        </p>
-</body>
-</html>
- --}}
  <!DOCTYPE html>
  <html>
  <head>
@@ -37,7 +19,7 @@
                      <tr>
                          <td style="padding: 20px;">
                              <h2 style="color: #27ae60; margin: 0;">Votre Code OTP</h2>
-                             <p style="font-size: 16px; color: #333;">{{ $fullname }},</p>
+                             <p style="font-size: 16px; color: #333;">{{ $name }},</p>
                              <p style="font-size: 16px; color: #333;">Voici votre code OTP pour accéder à votre compte :</p>
                              <p style="font-size: 28px; font-weight: bold; color: #6ab9e8; text-align: center;">{{ $otp_code }}</p>
                              <p style="font-size: 14px; color: #555;">Ce code est valable pour une durée limitée. Ne le partagez avec personne.</p>
