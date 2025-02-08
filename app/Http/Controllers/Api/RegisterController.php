@@ -35,7 +35,7 @@ class RegisterController extends Controller
         ]);
 
         $get_user_email = $request->email;
-        $get_user_name = $request->fullname;
+        $get_user_name = $request->name;
         Mail::to($request->email)->send(new WelcomeMail($get_user_email, $validToken, $get_user_name));
 
 
@@ -98,7 +98,7 @@ class RegisterController extends Controller
         $user->otp_code = $validToken;
         $user->save();
         $get_user_email = $user->email;
-        $get_user_name = $user->fullname;
+        $get_user_name = $user->name;
         Mail::to($user->email)->send(new WelcomeMail($get_user_email, $validToken, $get_user_name));
 
         return response()->json(['user' => $user]);

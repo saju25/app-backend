@@ -29,7 +29,7 @@
                      <!-- Header Section -->
                      <tr>
                          <td style="background-color: #8dd3f4; padding: 15px; font-size: 20px; font-weight: bold; color: #ffffff; display: flex; justify-content: center;align-items: center;">
-                             <span style="font-size: 24px;"> <img src="http://192.168.31.43:8080/assets/img/icon-logo-loding.png" alt="" width="100px" height="50px"></span style="  margin-left:10px ;"> Votre Application de Livraison de Médicaments
+                             <span style="font-size: 24px;"> <img src="https://medocciapp.online/assets/img/icon-logo-loding.png" alt="" width="100px" height="50px"></span style="  margin-left:10px ;"> Votre Application de Livraison de Médicaments
                          </td>
                      </tr>
                      
