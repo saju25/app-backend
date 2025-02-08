@@ -18,6 +18,9 @@ use function PHPUnit\Framework\isEmpty;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/email', function () {
+//     return view('emails.welcome');
+// });
 
 Route::get('/payment-fail', function () {
     return view('payment-fail');
