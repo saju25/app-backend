@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminWebController;
-use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductAddController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductWebController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController as ControllersShopController;
@@ -22,12 +22,9 @@ Route::get('/', function () {
 //     return view('emails.welcome');
 // });
 
-Route::get('/payment-fail', function () {
-    return view('payment-fail');
-});
-
-
+Route::get('/payment-fail', function () { return view('payment-fail');});
 Route::get('/payment-view/{id}/{uniqueid}', [PaymentController::class, 'paymentsuccess'])->name('payment_success');
+
 
 // OTP Verified Route
 Route::post('verifyotp', [RegisteredUserController::class, 'useractivation'])->name('verifyotp');
@@ -75,7 +72,8 @@ Route::middleware('auth','verified')->group(function () {
         Route::post('/admin-add', [AdminWebController::class, 'register'])->name('admin_register');
         Route::get('/admin-list', [AdminWebController::class, 'adminList'])->name('admin_list');
         Route::delete('/admin-list-delete/{id}', [AdminWebController::class, 'adminDelete'])->name('admin_delete');
-      
+
+        Route::get('/complete-order-list', [AdminWebController::class, 'complete_order_List'])->name('complete_order_list');
   
 });
 

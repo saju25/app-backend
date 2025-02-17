@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Api\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
@@ -110,6 +110,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Logout related route
     Route::post('/logout', [LogoutController::class, 'logout']);
+
+
+
+    Route::post('/process-payment', [PaymentController::class, 'processPayment']);
+    Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
 
 });
 

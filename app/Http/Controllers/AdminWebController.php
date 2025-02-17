@@ -83,4 +83,13 @@ public function adminDelete($id)
    }
 
 
+
+public function complete_order_List()
+   {
+    $users = User::where('role', 'admin')->get();
+    return view('admin.complete-order-list', ['users' => $users]);
+ 
+   }
+
+
 }

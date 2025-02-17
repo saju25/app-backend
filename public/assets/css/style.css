@@ -15,8 +15,8 @@ body {
 
 /* Header Styling */
 header {
-    background-color: #25a8d6;
-    color: #fff;
+    background-color: #eaf0f3;
+    color: #141212;
     padding: 5px 5px;
     display: flex;
     justify-content: space-between;
@@ -29,12 +29,12 @@ header {
   }
 
 .navbar-light .navbar-nav .nav-link {
-    color: white !important;
+    color: rgb(14, 13, 13) !important;
   }
 
 /* Hero Section Styling */
 .hero {
-    background-color: #2980B9;
+    background-color: #dce5eb;
     color: #fff;
     text-align: center;
     padding: 60px 0;

@@ -26,24 +26,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
     
-        // // Generate a unique ID (UUID)
         $uniqueId = Str::uuid();
     
-        // Find the order by ID
         $order = Order::find($id);
     
-        // Check if the order exists
-        if (!$order) {
+       if (!$order) {
             return response()->json(['error' => 'Order not found'], 404);
         }
     
-        // Assign the unique payment ID to the order
         $order->paymentid = $uniqueId;
     
-        // Save the order with the new payment ID
         $order->save();
     
-        // Return the user, unique ID, and updated order
         return response()->json([
             'user' => $user,
             'unique_id' => $uniqueId,

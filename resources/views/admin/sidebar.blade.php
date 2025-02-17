@@ -5,5 +5,6 @@
     <a href="{{route('banner_index')}}">Banner List</a>
     <a href="{{route('admin_add')}}">Add Admin</a>
     <a href="{{route('admin_list')}}">Add List</a>
+    <a href="{{route('complete_order_list')}}">Complete Order List</a>
     {{-- {{route('admin_list')}} --}}
 </div>
