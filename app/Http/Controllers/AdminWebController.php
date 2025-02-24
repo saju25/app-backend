@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dm;
+use App\Models\Order;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -86,8 +87,17 @@ public function adminDelete($id)
 
 public function complete_order_List()
    {
-    $users = User::where('role', 'admin')->get();
-    return view('admin.complete-order-list', ['users' => $users]);
+ 
+    $orders = Order::where('payment', 'payé')->orwhere('status','complète')->get();
+    foreach($orders as $order){
+        $dm = Dm::where('id', $order->driver_id )->first();
+    }
+    foreach($orders as $order){
+        $shop = Shop::where('id', $order->shop_id)->first();
+    }
+  
+    return view('admin.complete-order-list', ['orders' => $orders, 'dm' => $dm, 'shop' => $shop]);
+  
  
    }
 

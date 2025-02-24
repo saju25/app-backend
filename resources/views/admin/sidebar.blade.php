@@ -1,5 +1,5 @@
 <div>
-    <a href="{{route('complete_order_list')}}">Complete Order List</a>
+    <a href="{{route('complete_order_list')}}">statut de paiement</a>
     <a href="{{route('admin_index')}}">Liste des boutiques</a>
     <a href="{{route('driver_index')}}">Liste de Livreurs    </a>
     <a href="{{route('banner_index')}}">Liste des bannières</a>

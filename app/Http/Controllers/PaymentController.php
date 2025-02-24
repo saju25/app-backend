@@ -16,6 +16,8 @@ class PaymentController extends Controller
         }
     
         if ($order->paymentid === $uniqueid) {
+            $order->payment  = 'payé';
+            $order->save();
             return view('payment');
         }
     

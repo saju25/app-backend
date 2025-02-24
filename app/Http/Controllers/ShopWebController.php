@@ -98,12 +98,14 @@ class ShopWebController extends Controller
 
 
 
-    public function order(){
+    public function order()
+    {
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
         $orders = Order::where('shop_id', $shop->id)->get();
          return view('user.shop-order', ['orders' => $orders]);
        
     }
+ 
     
 }

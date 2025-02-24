@@ -24,36 +24,26 @@
          <div class="conten_div">
 
 
-           {{-- <table id="myTable" class="display">
+           <table id="myTable" class="display">
                  <thead>
                      <tr >
                          <th>Admin ID</th>
-                         <th>Name</th>
-                          <th>Email</th>
-                          <th>Action</th>
+                          <th>statut de paiement du livreur</th>
+                          <th>statut de paiement de la boutique</th>
                      </tr>
                  </thead>
                  <tbody>
-                     @foreach ($users as $user)
+                     @foreach ($orders as $order)
                      <tr>
-                         <td>{{ $user->id  }}</td> 
-                         <td>{{ $user->name  }}</td> 
-                         <td>{{ $user->email  }}</td> 
+                         <td>{{ $order->id  }}</td> 
+                        <td>{{ $dm->dm_phone   }}</td> 
+                         <td>{{ $shop->shop_phone  }}</td> 
                       
-                     
-                        <td>
-                          
-                            <form action="{{ route('admin_delete', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this admin?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn_cancel text-white text-decoration-none" type="submit">Delete</button>
-                            </form>
-                            
-                         </td> 
+                      
                      </tr>
                      @endforeach
                  </tbody>
-             </table> --}}
+             </table>
          </div>
         
    
