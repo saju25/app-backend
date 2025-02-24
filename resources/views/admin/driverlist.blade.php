@@ -25,14 +25,14 @@
              <table id="myTable" class="display">
                  <thead>
                      <tr >
-                         <th>Shop ID</th>
-                         <th>Shop Photo</th>
-                         <th>Shop Pdf Contract </th>
-                         <th>Shop ID</th>
+                         <th> id livreur </th>
+                         <th>Photo d’identité </th>
+                         <th>Contrat de boutique en PDF</th>
+                         <th>Contrat livreur </th>
                      
-                         <th>Shop Name</th>
-                         <th>Shop Phone</th>
-                         <th>Shop Email</th>
+                         <th>Nom du livreur </th>
+                         <th>Numéro du livreur </th>
+                         <th>Adresse mail livreur</th>
                          <th>Action</th>
                      </tr>
                  </thead>
@@ -42,16 +42,16 @@
                          <td>{{ $driver->id  }}</td> 
                          <td>
                             <a href="{{ asset($driver->face_photo ) }}">
-                                <img src="{{ asset($driver->face_photo ) }}" alt="" width="100px" height="50px">
+                                <img src="{{ asset($driver->face_photo ) }}" alt="" width="80px" height="40px">
                             </a>
                               
                         </td> 
                         <td>
-                            <a href="{{ asset($driver->pdf_contract  ) }}">see</a>
+                            <a href="{{ asset($driver->pdf_contract  ) }}">Voir</a>
                          </td> 
                          <td>
                             <a href="{{ asset($driver->id_card  ) }}">
-                                <img src="{{ asset($driver->id_card  ) }}" alt="" width="100px" height="50px">
+                                <img src="{{ asset($driver->id_card  ) }}" alt="" width="80px" height="40px">
                             </a>
                         </td> 
                        

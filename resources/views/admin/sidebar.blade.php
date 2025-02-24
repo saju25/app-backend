@@ -1,10 +1,13 @@
 <div>
-    <a href="{{route('admin_index')}}">Shop List</a>
-    <a href="{{route('driver_index')}}">Driver List</a>
-    <a href="{{route('banner_create')}}">Banner Add</a>
-    <a href="{{route('banner_index')}}">Banner List</a>
-    <a href="{{route('admin_add')}}">Add Admin</a>
-    <a href="{{route('admin_list')}}">Add List</a>
     <a href="{{route('complete_order_list')}}">Complete Order List</a>
+    <a href="{{route('admin_index')}}">Liste des boutiques</a>
+    <a href="{{route('driver_index')}}">Liste de Livreurs    </a>
+    <a href="{{route('banner_index')}}">Liste des bannières</a>
+    <a href="{{route('banner_create')}}">Ajouter une bannière</a>
+   
+    <a href="{{route('admin_list')}}">Liste d'administrateurs</a>
+    <a href="{{route('admin_add')}}">Ajouter un administrateur</a>
+
+
     {{-- {{route('admin_list')}} --}}
 </div>

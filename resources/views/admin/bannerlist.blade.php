@@ -26,7 +26,7 @@
                  <thead>
                      <tr >
                          <th>Banner ID</th>
-                         <th>Shop Photo</th>
+                         <th>Banner Photo</th>
                           <th>Action</th>
                      </tr>
                  </thead>

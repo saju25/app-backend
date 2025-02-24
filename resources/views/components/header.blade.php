@@ -18,17 +18,17 @@
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-end align-items-center gap-3">
                 <li class="nav-item ">
-                    <a class="nav-link" href="/">Home </a>
+                    <a class="nav-link" href="/">Accueil</a>
                   </li>
                   <li class="nav-item ">
-                    <a class="nav-link" href="{{route('shop.index')}}">Shop </span></a>
+                    <a class="nav-link" href="{{route('shop.index')}}">Pharmacies</span></a>
                   </li>
                   @php
                   $user = auth()->user();
                 @endphp
                 @if ($user && $user->role == 'admin')
                 <li class="nav-item ">
-                 <a class="nav-link" href="{{route('admin_index')}}">Admin </span></a>
+                 <a class="nav-link" href="{{route('admin_index')}}">Portail admin </span></a>
                </li>
                 @endif
                  

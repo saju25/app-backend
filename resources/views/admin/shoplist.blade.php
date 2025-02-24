@@ -25,11 +25,11 @@
              <table id="myTable" class="display">
                  <thead>
                      <tr >
-                         <th>Shop ID</th>
-                         <th>Shop Photo</th>
-                         <th>Shop Name</th>
-                         <th>Shop Phone</th>
-                         <th>Shop Email</th>
+                         <th>identifiant phcie</th>
+                         <th>Photo phcie</th>
+                         <th>Nom phcies </th>
+                         <th>Numéro Wave Phcies (Wave number for payment)</th>
+                         <th>email Phcies </th>
                          <th>Action</th>
                      </tr>
                  </thead>
@@ -38,7 +38,7 @@
                      <tr>
                          <td>{{ $shop->id  }}</td> 
                          <td>
-                                <img src="{{ asset($shop->shop_photo) }}" alt="" width="100px" height="100px">
+                                <img src="{{ asset($shop->shop_photo) }}" alt="" width="80px" height="40px">
                            
                         </td> 
                          <td>{{ $shop->shop_name}}</td> 

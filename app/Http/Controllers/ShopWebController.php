@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopWebController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
       

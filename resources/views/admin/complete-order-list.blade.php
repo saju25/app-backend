@@ -24,10 +24,7 @@
          <div class="conten_div">
 
 
-
-            <div class="btm btn-success w-100 p-3 mt-3 cursor-pointer" href="#" onclick='calltouchpay()'>S'abonner</div>
-
-             {{-- <table id="myTable" class="display">
+           {{-- <table id="myTable" class="display">
                  <thead>
                      <tr >
                          <th>Admin ID</th>
@@ -64,36 +61,6 @@
          </div>
    </div>
 
-
-
-
-
-   @php
-   $email = Auth::user()->email;
-   $first = Auth::user()->name;
-   $last = Auth::user()->fullname;
-   $phone = Auth::user()->phone;
-@endphp
-
-
-<script src=https://touchpay.gutouch.net/touchpayv2/script/touchpaynr/prod_touchpay-0.0.1.js  type="text/javascript"></script>
-     <script type="text/javascript">
-       function calltouchpay(){
-
-           var email = {!! json_encode($email) !!};
-           var first = {!! json_encode($first) !!};
-           var last = {!! json_encode($last) !!};
-           var phone = {!! json_encode($phone) !!};
-
-
-
-           sendPaymentInfos(new Date().getTime(),
-                            'XCPNY11168','v4GE9BuvtAA9tuDS9xZsmPLVpAZ0wZFcZFAb9OBcauTQeS3Dw4',
-                            'xcompnay.com',  {!! json_encode(url('test-success')) !!},
-       {!! json_encode(url('test-fail')) !!}, 3000,
-                            'Abidjan',email,first,last,phone);
-       }
-   </script>
 
 
 
