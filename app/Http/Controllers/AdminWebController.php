@@ -76,30 +76,42 @@ class AdminWebController extends Controller
 }
 
 
-public function adminDelete($id)
-   {
-    User::where('id', $id)->delete();
-    return redirect()->route('admin_list');
- 
-   }
+                public function adminDelete($id)
+                {
+                    User::where('id', $id)->delete();
+                    return redirect()->route('admin_list');
+                
+                }
 
-
-
-public function complete_order_List()
-   {
- 
-    $orders = Order::where('payment', 'payé')->orwhere('status','complète')->get();
-    foreach($orders as $order){
-        $dm = Dm::where('id', $order->driver_id )->first();
-    }
-    foreach($orders as $order){
-        $shop = Shop::where('id', $order->shop_id)->first();
-    }
-  
-    return view('admin.complete-order-list', ['orders' => $orders, 'dm' => $dm, 'shop' => $shop]);
-  
- 
-   }
+                public function complete_order_List()
+                {
+                    // Fetch orders with payment 'payé' or status 'complète'
+                    $orders = Order::where('payment', 'payé')->orWhere('status', 'complète')->get();
+                
+                    // Initialize empty arrays for DM and Shop data
+                    $dms = [];
+                    $shops = [];
+                
+                    // If there are orders, fetch corresponding DM and Shop data
+                    if ($orders->isNotEmpty()) {
+                        foreach ($orders as $order) {
+                            $dm = Dm::where('id', $order->driver_id)->first();
+                            $shop = Shop::where('id', $order->shop_id)->first();
+                
+                            // Store DM and Shop objects
+                            $dms[] = $dm;
+                            $shops[] = $shop;
+                        }
+                    }
+                
+                    // Return view with orders, dms, and shops
+                    return view('admin.complete-order-list', [
+                        'orders' => $orders,
+                        'dms' => $dms,
+                        'shops' => $shops
+                    ]);
+                }
+                     
 
 
 }
