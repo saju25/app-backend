@@ -34,7 +34,7 @@
                  
                  @guest()
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Log In</a>
+                    <a class="nav-link" href="{{route('login')}}">Se connecter</a>
                   </li>
                   @endguest
               @auth()
@@ -51,7 +51,7 @@
                         <x-dropdown-link class="dropdown-item  text-center" :href="route('logout')"
                             onclick="event.preventDefault();
                                                                                                                                                                                                                     this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Se déconnecter') }}
                         </x-dropdown-link>
                     </form>
                   </li>

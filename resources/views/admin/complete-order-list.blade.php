@@ -30,8 +30,8 @@
                         @forelse ($orders as $index => $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $dms[$index]->dm_phone ?? 'No driver' }}</td> 
-                                <td>{{ $shops[$index]->shop_phone ?? 'No shop' }}</td> 
+                                <td>Veuillez payer manuellement et mettre à jour le statut du paiement. Le numéro de paiement est le  {{ $dms[$index]->dm_phone ?? 'No driver' }}</td> 
+                                <td>Veuillez payer manuellement et mettre à jour le statut du paiement. Le numéro de paiement est le <span class=" text-bold">{{ $shops[$index]->shop_phone ?? 'No shop' }}</span> </td> 
                             </tr>
                         @empty
                             <tr>

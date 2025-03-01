@@ -1,4 +1,4 @@
-<div>
+<div class="mt-5">
     <a href="{{route('complete_order_list')}}">statut de paiement</a>
     <a href="{{route('admin_index')}}">Liste des boutiques</a>
     <a href="{{route('driver_index')}}">Liste de Livreurs    </a>
