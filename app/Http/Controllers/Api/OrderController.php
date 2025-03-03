@@ -21,6 +21,7 @@ class OrderController extends Controller
                         'delivery_address' => 'required',
                         'phone' => 'required',
                         'total' => 'required',
+                        'deliveryfee' => 'required',
                 ]);
                 if (!Auth::check()) {
                         return redirect()->route('login')->with('error', 'Please log in to place an order.');
@@ -68,6 +69,7 @@ class OrderController extends Controller
                             'delivery_address' => $request->delivery_address,
                             'phone' => $request->phone,
                             'total' => $request->total,
+                            'deliveryfee' => $request->deliveryfee,
                             'latitude' => $request->latitude,
                             'longitude' => $request->longitude,
                         ]);

@@ -69,10 +69,16 @@ Route::middleware('auth','verified')->group(function () {
         Route::post('/admin-banner-add-store', [BannerController::class, 'store'])->name('banner_store');
         Route::delete('/admin-banners/{id}', [BannerController::class, 'delete'])->name('banners_delete');
         Route::get('/admin-add', [AdminWebController::class, 'admin'])->name('admin_add');
+     
         Route::post('/admin-add', [AdminWebController::class, 'register'])->name('admin_register');
         Route::get('/admin-list', [AdminWebController::class, 'adminList'])->name('admin_list');
         Route::delete('/admin-list-delete/{id}', [AdminWebController::class, 'adminDelete'])->name('admin_delete');
-
+     
+        // delivery fee
+        Route::get('/delivryfee/{id}', [AdminWebController::class, 'delivryfee'])->name('delivryfee');
+        Route::put('/delivryfee-udate/{id}', [AdminWebController::class, 'delivryfeeupdate'])->name('delivryfeeupdate');
+      
+      
         Route::get('/complete-order-list', [AdminWebController::class, 'complete_order_List'])->name('complete_order_list');
   
 });

@@ -42,5 +42,47 @@
             });
         });
     </script>
+    
+  <script>
+  document.getElementById('notificationForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const body = document.getElementById('body').value;
+
+    const payload = {
+        title: title,
+        body: body,
+    };
+
+    try {
+        const response = await fetch('/api/send-notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.status === 'success') {
+            alert('Notification sent successfully!');
+
+            // Clear the fields individually
+            document.getElementById('title').value = '';
+            document.getElementById('body').value = '';
+        } else {
+            console.error('Error:', result.message);  // Log the error response
+            alert('Error sending notification: ' + result.message);  // Show detailed error
+        }
+    } catch (error) {
+        console.error('Error:', error);  // Log the error to the console for debugging
+        alert('Failed to send notification. Check console for details.');
+    }
+});
+
+
+   </script>
 </body>
 </html>

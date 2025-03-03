@@ -10,6 +10,9 @@ class DeliveryFee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fee',
+        'dayfee',
+        'addi_dayfee',
+        'nightfee',
+        'addi_nightfee',
     ];
 }

@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('delivery_fees', function (Blueprint $table) {
             $table->id();
-            $table->string('fee')->nullable(); 
+            $table->decimal('dayfee', 8, 0)->nullable(); 
+            $table->decimal('addi_dayfee', 8, 0)->nullable(); 
+            $table->decimal('nightfee', 8, 0)->nullable(); 
+            $table->decimal('addi_nightfee', 8, 0)->nullable(); 
             $table->timestamps();
         });
     }

@@ -31,7 +31,12 @@ Route::post('verifyotp/{id}', [RegisterController::class, 'otpVerification'])->n
 Route::get('/resend-otp/{id}', [RegisterController::class, 'resendOtp'])->name('resend-otp');
 Route::get('/resend-otp-email/{email}', [RegisterController::class, 'resendOtpInemail'])->name('resend-otp-email');
 Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwordChange'])->name('passwordc_hange');
+ // device id add
 
+ Route::post('/send-notification', [UserController::class, 'sendNotification']);
+ Route::post('/device', [UserController::class, 'store']);
+ Route::get('/message', [UserController::class, 'getMessage'])->name('message');
+ Route::post('/message', [UserController::class, 'message'])->name('storeMessage');
 
 
 
@@ -39,6 +44,7 @@ Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwor
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'login'])->name('api-login');
 Route::middleware('auth:sanctum')->group(function () {
+   
     // User-related routes
     Route::get('/user', [UserController::class, 'getUserData']);
     Route::get('/user-order-verify/{id}', [UserController::class, 'getUserOrder']);
@@ -75,6 +81,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/shop-locations', [ShopLocationController::class, 'store']);
     Route::post('/shop-locations-update/{id}', [ShopLocationController::class, 'updates']);
     Route::get('/get-shop-locations', [ShopLocationController::class, 'getLocation']);
+    Route::get('/get-shop-location/{id}', [ShopLocationController::class, 'getShopLocation']);
     Route::get('/get-shop-locations-map', [ShopLocationController::class, 'getLocationmap']);
     
     // Direct Messaging-related routes

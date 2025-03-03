@@ -15,9 +15,12 @@ class CreateOrdersTable extends Migration
             $table->string('delivery_address')->nullable(); 
             $table->string('phone')->nullable(); 
             $table->string('total')->nullable(); 
+            $table->string('deliveryfee')->nullable(); 
             $table->string('driver_id')->nullable();
              $table->string('status')->default('En Attente');
             $table->string('payment')->default('non rémunéré');
+            $table->string('shop_payment')->default('non rémunéré');
+            $table->string('delivery_payment')->default('non rémunéré');
             $table->string('paymentid')->nullable(); 
             $table->string('prescription_photo')->nullable();
             $table->decimal('latitude', 10, 7)->nullable(); // Latitude for the location

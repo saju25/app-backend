@@ -63,5 +63,19 @@ class ShopLocationController extends Controller
             'data' => $shopLocation,
         ], 200);
     }
+    public function getShopLocation($id)
+    {
+       
+         $shopLocation = ShopLocation::where('shop_id', $id)->first();
+    
+        if (!$shopLocation) {
+            return response()->json(['message' => 'Cart item not found or unauthorized'], 404);
+        }
+    
+        return response()->json([
+            'message' => 'Shop location get successfully',
+            'data' => $shopLocation,
+        ], 200);
+    }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryFee;
 use App\Models\Dm;
 use App\Models\Order;
 use App\Models\Shop;
@@ -76,14 +77,14 @@ class AdminWebController extends Controller
 }
 
 
-                public function adminDelete($id)
+  public function adminDelete($id)
                 {
                     User::where('id', $id)->delete();
                     return redirect()->route('admin_list');
                 
                 }
 
-                public function complete_order_List()
+    public function complete_order_List()
                 {
                     // Fetch orders with payment 'payé' or status 'complète'
                     $orders = Order::where('payment', 'payé')->orWhere('status', 'complète')->get();
@@ -112,6 +113,41 @@ class AdminWebController extends Controller
                     ]);
                 }
                      
+  public function delivryfee($id)
+          {
+            $deliveryFee = DeliveryFee::findOrFail($id);
 
+            // Return the edit view with the current data
+            return view('admin.deliveryfee', compact('deliveryFee'));
+                    
+           }
+
+
+ public function delivryfeeupdate(Request $request, $id)
+           {
+               // Validate the incoming request
+               $validated = $request->validate([
+                   'dayfee' => 'required|numeric', // Validate dayfee as a number
+                   'addi_dayfee' => 'required|numeric', // Validate dayfee as a number
+                   'nightfee' => 'required|numeric', // Validate nightfee as a number
+                   'addi_nightfee' => 'required|numeric', // Validate nightfee as a number
+               ]);
+           
+               // Find the delivery fee record by ID
+               $deliveryFee = DeliveryFee::findOrFail($id);
+           
+               // Update the delivery fee values
+               $deliveryFee->dayfee = $request->input('dayfee');
+               $deliveryFee->addi_dayfee = $request->input('addi_dayfee');
+               $deliveryFee->nightfee = $request->input('nightfee');
+               $deliveryFee->addi_nightfee = $request->input('addi_nightfee');
+           
+               // Save the updated delivery fee
+               $deliveryFee->save();
+              return redirect()->route('delivryfee', ['id' => 1]) // Correct syntax for passing parameters
+                ->with('success', 'Delivery fees updated successfully!');
+
+           }
+              
 
 }
