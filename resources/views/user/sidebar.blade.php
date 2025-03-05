@@ -1,7 +1,6 @@
-<div>
-    <a href="{{route('shop.index')}}">Shop Product</a>
-    <a href="{{route('add_view')}}">Product Add</a>
-    <a href="{{route('shop_order')}}">Shop Order</a>
-    <a href="{{route('shop_info')}}">Shop Contact</a>
-    
+<div class="mt-5">
+    <a href="{{route('add_view')}}">Ajouter un produit</a>
+    <a href="{{route('shop.index')}}">Boutique de produits</a>
+    <a href="{{route('shop_order')}}">Commande en boutique</a>
+    <a href="{{route('shop_info')}}">Contacter la boutique</a>  
 </div>

@@ -14,5 +14,6 @@ class DeliveryFee extends Model
         'addi_dayfee',
         'nightfee',
         'addi_nightfee',
+        'paydriver',
     ];
 }

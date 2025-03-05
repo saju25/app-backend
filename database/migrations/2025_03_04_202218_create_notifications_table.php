@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('delivery_fees', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->decimal('dayfee', 8, 0)->nullable();
-            $table->decimal('addi_dayfee', 8, 0)->nullable();
-            $table->decimal('nightfee', 8, 0)->nullable();
-            $table->decimal('addi_nightfee', 8, 0)->nullable();
-            $table->decimal('paydriver', 8, 0)->nullable();
+            $table->string('title');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('delivery_fees');
+        Schema::dropIfExists('notifications');
     }
 };

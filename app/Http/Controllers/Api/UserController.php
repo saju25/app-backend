@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Events\MessageSent; // Import the event
 use App\Models\Dm;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Shop;
 use App\Models\User;
@@ -116,45 +117,96 @@ class UserController extends Controller
     public function sendNotification(Request $request)
     {
         $client = new Client();
-    
-         $title = $request->input('title');
+        
+        $title = $request->input('title');
         $body = $request->input('body');
+        
+        // Save notification once before sending
+        // Notification::create([
+        //     'title' => $title,
+        //     'body' => $body,
+        // ]);
+      
+        
+        // Get device tokens and filter out any empty ones
+        $pushTokens = array_filter(Device::pluck('device_id')->toArray());
+        
+        // Prepare the notification payload
+        $notificationData = [
+            'sound' => 'default',
+            'title' => $title,
+            'body' => substr($body, 0, 50),  // Trim body to 50 characters
+            'data' => ['extraData' => 'some extra data'],
+        ];
     
-        $push = Device::pluck('device_id')->toArray();
-        $pushT = array_filter($push); 
+        // Track success and failure of notifications
+        $successCount = 0;
+        $failureCount = 0;
+        $errorDetails = [];
     
-        foreach ($pushT as $token) {
-            $pushToken = $token;
-    
-            $message = [
-                'to' => $pushToken,
-                'sound' => 'default',
-                'title' => $title,
-                'body' => $body,
-                'data' => ['extraData' => 'some extra data'], 
-            ];
-    
+        // Send notifications to all devices
+        foreach ($pushTokens as $pushToken) {
             try {
+                $notificationData['to'] = $pushToken;
+        
+                // Send notification via Expo API
                 $response = $client->post('https://exp.host/--/api/v2/push/send', [
-                    'json' => $message,
+                    'json' => $notificationData,
                     'headers' => [
                         'Content-Type' => 'application/json',
                     ]
                 ]);
-    
+        
+                // Decode the response
                 $result = json_decode($response->getBody()->getContents(), true);
-    
-               if (isset($result['data']) && isset($result['data']['status']) && $result['data']['status'] === 'ok') {
-                    return response()->json(['message' => 'Notification sent successfully!', 'status' => 'success']);
+        
+                // Check if the notification was sent successfully
+                if (isset($result['data']['status']) && $result['data']['status'] === 'ok') {
+                    $successCount++;
                 } else {
-                   \Log::error("Error from Expo API: " . json_encode($result));
-                    return response()->json(['message' => 'Failed to send notification', 'status' => 'error', 'error_details' => $result]);
+                    $failureCount++;
+                    $errorDetails[] = "Error sending to token $pushToken: " . json_encode($result);
                 }
             } catch (\Exception $e) {
-                \Log::error("Error sending notification: " . $e->getMessage());
-                return response()->json(['message' => 'Error sending notification: ' . $e->getMessage(), 'status' => 'error']);
+                $failureCount++;
+                $errorDetails[] = "Error sending to token $pushToken: " . $e->getMessage();
             }
         }
+    
+    Notification::create([
+            'title' => $title,
+            'message' => $body,
+        ]);
+        if ($successCount > 0) {
+            return response()->json([
+                'message' => 'Notifications sent successfully!',
+                'status' => 'success',
+                'success_count' => $successCount,
+                'failure_count' => $failureCount,
+                'error_details' => $errorDetails
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Failed to send any notifications',
+                'status' => 'error',
+                'failure_count' => $failureCount,
+                'error_details' => $errorDetails
+            ]);
+        }
+    }
+    public function message()
+    {
+        $message = Notification::all();
+        return response()->json([
+            'message' => $message,
+        ]);
+    }
+    public function s_message($id)
+    {
+        $message = Notification::where('id', $id)->first();
+        return response()->json([
+            'message' => $message,
+        ]);
     }
       
 }

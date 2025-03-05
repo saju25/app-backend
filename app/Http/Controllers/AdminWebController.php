@@ -123,31 +123,38 @@ class AdminWebController extends Controller
            }
 
 
- public function delivryfeeupdate(Request $request, $id)
+           public function delivryfeeupdate(Request $request, $id)
            {
                // Validate the incoming request
                $validated = $request->validate([
                    'dayfee' => 'required|numeric', // Validate dayfee as a number
-                   'addi_dayfee' => 'required|numeric', // Validate dayfee as a number
-                   'nightfee' => 'required|numeric', // Validate nightfee as a number
-                   'addi_nightfee' => 'required|numeric', // Validate nightfee as a number
+                   'addi_dayfee' => 'required|numeric', // Validate additional day fee
+                   'nightfee' => 'required|numeric', // Validate night fee
+                   'addi_nightfee' => 'required|numeric', // Validate additional night fee
+                   'paydriver' => 'required|numeric', // Validate paydriver as a numeric value
                ]);
            
                // Find the delivery fee record by ID
-               $deliveryFee = DeliveryFee::findOrFail($id);
+               $deliveryFee = DeliveryFee::find($id); // Consider using find() to handle missing record gracefully
+           
+               if (!$deliveryFee) {
+                   return redirect()->route('delivryfee')->with('error', 'Delivery fee not found!');
+               }
            
                // Update the delivery fee values
                $deliveryFee->dayfee = $request->input('dayfee');
                $deliveryFee->addi_dayfee = $request->input('addi_dayfee');
                $deliveryFee->nightfee = $request->input('nightfee');
                $deliveryFee->addi_nightfee = $request->input('addi_nightfee');
+               $deliveryFee->paydriver = $request->input('paydriver');
            
                // Save the updated delivery fee
                $deliveryFee->save();
-              return redirect()->route('delivryfee', ['id' => 1]) // Correct syntax for passing parameters
-                ->with('success', 'Delivery fees updated successfully!');
-
+           
+               return redirect()->route('delivryfee', ['id' => 1]) // Corrected the route parameter
+                   ->with('success', 'Delivery fees updated successfully!');
            }
+           
               
 
 }

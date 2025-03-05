@@ -143,6 +143,13 @@ public function shopOrder($id){
                 
                     return $order;
  }
+ public function getSpec_Order_cancel($id)
+                {
+                    $order = Order::find($id);
+                    $order->status = 'Annuler';
+                    $order->save();
+                    return response()->json(['order' => $order]);
+               }
       
 public function getShopOrder($id){
             $shopOrder = Order::where('shop_id', $id)->get();
@@ -150,6 +157,10 @@ public function getShopOrder($id){
 }
 public function getAcceptOrder($driver_id){
             $shopOrder = Order::where('driver_id', $driver_id)->get();
+            return response()->json(['acceptOrder' => $shopOrder]);
+}
+public function getAcceptOrdershop($shop_id){
+            $shopOrder = Order::where('shop_id', $shop_id)->get();
             return response()->json(['acceptOrder' => $shopOrder]);
 }
 

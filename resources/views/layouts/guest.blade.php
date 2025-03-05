@@ -43,7 +43,7 @@
         });
     </script>
     
-  <script>
+<script>
   document.getElementById('notificationForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 

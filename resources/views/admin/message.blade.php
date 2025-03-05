@@ -23,11 +23,11 @@
                     <h1 class="mt-5">Envoyer une notification</h1>
                     <form id="notificationForm">
                         <label for="title">Titre</label>
-                        <input class="p-2" type="text" id="title" placeholder="Entrez le titre" required />
+                        <input class="p-2" type="text" id="title" name="title" placeholder="Entrez le titre" required />
   
                         <label for="body">Message</label>
                         <div>
-                            <textarea class="w-100 p-2" id="body" placeholder="Entrez le texte du message" required></textarea>
+                            <textarea class="w-100 p-2" id="body" name="message" placeholder="Entrez le texte du message" required></textarea>
                         </div>
                      
                         <button type="submit" class="btn btn-primary w-100 mt-1">Send Notification</button>

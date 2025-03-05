@@ -25,10 +25,10 @@
                 <table id="myTable" class="display">
                     <thead>
                         <tr >
-                            <th>Product Name</th>
-                            <th>MRP Price</th>
-                            <th>Best Price</th>
-                            <th>Stock Quantity </th>
+                            <th>Nom du produit</th>
+                            <th>Prix ​​MRP</th>
+                            <th>Meilleur prix</th>
+                            <th>Quantité en stock </th>
                             <th>Action</th>
                         </tr>
                     </thead>

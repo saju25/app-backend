@@ -25,10 +25,10 @@
              <table id="myTable" class="display">
                  <thead>
                      <tr >
-                         <th>Time</th>
-                         <th>Delivery Address</th>
-                         <th>Phone</th>
-                         <th>Status </th>
+                         <th>Temps</th>
+                         <th>Adresse de livraison</th>
+                         <th>Téléphone</th>
+                         <th>Statut </th>
                      </tr>
                  </thead>
                  <tbody>

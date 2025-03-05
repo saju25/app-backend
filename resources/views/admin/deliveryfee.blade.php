@@ -24,7 +24,7 @@
          <div class="conten_div">
             <div class=" d-flex justify-content-center align-items-center">
             <div class="page section-header col-md-6 bg-white  mt-5 mb-4 p-4">
-                <h2>{{ isset($deliveryFee) ? 'Edit' : 'Add' }} Delivery Fee</h2>
+                <h2>Modifier les frais de livraison</h2>
         
                 <!-- Display Success Message -->
                 @if(session('success'))
@@ -54,25 +54,29 @@
                     @endif
         
                     <div class="mb-2">
-                        <label for="dayfee" class="form-label">Day Time Delivery Fee</label>
+                        <label for="dayfee" class="form-label">Frais de livraison en journée</label>
                         <input type="number" class="form-control" name="dayfee" value="{{ old('dayfee', $deliveryFee->dayfee ?? '') }}"  required>
                     </div>
                     <div class="mb-2">
-                        <label for="dayfee" class="form-label">Additional day Time Delivery Fee</label>
+                        <label for="dayfee" class="form-label">Frais de livraison pour un jour supplémentaire</label>
                         <input type="number" class="form-control" name="addi_dayfee" value="{{ old('addi_dayfee', $deliveryFee->addi_dayfee ?? '') }}" required>
                     </div>
         
                     <div class="mb-2">
-                        <label for="nightfee" class="form-label">Night Time Delivery Fee</label>
+                        <label for="nightfee" class="form-label">Frais de livraison de nuit</label>
                         <input type="number" class="form-control" name="nightfee" value="{{ old('nightfee', $deliveryFee->nightfee ?? '') }}"  required>
                     </div>
                     <div class="mb-2">
-                        <label for="nightfee" class="form-label">Additional night Time Delivery Fee</label>
+                        <label for="nightfee" class="form-label">Frais de livraison de nuit supplémentaires</label>
                         <input type="number" class="form-control" name="addi_nightfee" value="{{ old('addi_nightfee', $deliveryFee->addi_nightfee ?? '') }}"  required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="nightfee" class="form-label">Voulez-vous payer le chauffeur (%)</label>
+                        <input type="number" class="form-control" name="paydriver" value="{{ old('paydriver', $deliveryFee->paydriver ?? '') }}"  required>
                     </div>
         
                     <div>
-                        <button type="submit" class="btn mt-3">{{ isset($deliveryFee) ? 'Update' : 'Save' }} Delivery Fee</button>
+                        <button type="submit" class="btn mt-3">Mise à jour des frais de livraison</button>
                     </div>
                 </form>
              </div>

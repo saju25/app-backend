@@ -34,6 +34,8 @@ Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwor
  // device id add
 
  Route::post('/send-notification', [UserController::class, 'sendNotification']);
+ Route::get('/notification', [UserController::class, 'message']);
+ Route::get('/snotification/{id}', [UserController::class, 's_message']);
  Route::post('/device', [UserController::class, 'store']);
  Route::get('/message', [UserController::class, 'getMessage'])->name('message');
  Route::post('/message', [UserController::class, 'message'])->name('storeMessage');
@@ -75,7 +77,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/order', [OrderController::class, 'getOrder']);
     Route::get('/shop-order/{id}', [OrderController::class, 'shopOrder']);
     Route::get('/accept-order/{driver_id}', [OrderController::class, 'getAcceptOrder']);
+    Route::get('/accept-order-shop/{shop_id}', [OrderController::class, 'getAcceptOrdershop']);
     Route::get('/order/{id}', [OrderController::class, 'getSpec_Order']);
+    Route::put('/order-cancel/{id}', [OrderController::class, 'getSpec_Order_cancel']);
     
     // Shop Location-related routes
     Route::post('/shop-locations', [ShopLocationController::class, 'store']);
