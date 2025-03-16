@@ -50,6 +50,16 @@ class DriverController extends Controller
             'data' => $driver,
         ]);
     }
+    public function getDriver($id)
+    {
+       
+        $driver = Dm::where('id', $id)->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'Driver data fetched successfully!',
+            'data' => $driver,
+        ]);
+    }
 
 
 

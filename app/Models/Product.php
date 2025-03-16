@@ -20,6 +20,7 @@ class Product extends Model
         'Num_of_strip_one_pack',
         'stock_quantity',
         'product_photo',
+        'shop_id',
     ];
 
     public function shop()

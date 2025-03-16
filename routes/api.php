@@ -43,9 +43,9 @@ Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwor
 
 
 
-Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/login', [LoginController::class, 'login'])->name('api-login');
-Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/register', [RegisterController::class, 'store']);
+        Route::post('/login', [LoginController::class, 'login'])->name('api-login');
+        Route::middleware('auth:sanctum')->group(function () {
    
     // User-related routes
     Route::get('/user', [UserController::class, 'getUserData']);
@@ -69,7 +69,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cart', [AddToCartController::class, 'index']);
     Route::post('/add-cart', [AddToCartController::class, 'store']);
     Route::put('/updata-cart/{id}', [AddToCartController::class, 'update']);
-    
+
+
     // Order-related routes
     Route::post('/place-order', [OrderController::class, 'placeOrder']);
     Route::post('/Prescription-order', [PrescriptionOrderController::class, 'PrescriptionOrder']);
@@ -122,10 +123,8 @@ Route::middleware('auth:sanctum')->group(function () {
     //Logout related route
     Route::post('/logout', [LogoutController::class, 'logout']);
 
-
-
-    Route::post('/process-payment', [PaymentController::class, 'processPayment']);
-    Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
+    Route::post('/upload-file', [ProductAddController::class, 'uploadCSV']);
+    Route::delete('/product/{id}', [ProductAddController::class, 'destroy']);
 
 });
 

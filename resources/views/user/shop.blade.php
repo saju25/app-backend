@@ -35,16 +35,23 @@
                     <tbody>
                         @foreach ($products as $product)
                         <tr>
-                            <td>{{ $product->product_name  }}</td> 
-                            <td>{{ $product->mrp_price_of_piece   }}</td> 
-                            <td>{{ $product->best_price_of_piece    }}</td> 
-                            <td>{{ $product->stock_quantity     }}</td> 
+                            <td>{{ $product->product_name }}</td> 
+                            <td>{{ $product->mrp_price_of_piece }}</td> 
+                            <td>{{ $product->best_price_of_piece }}</td> 
+                            <td>{{ $product->stock_quantity }}</td> 
                             <td>
-                                <button class="btn"><a class="text-white" href="{{route('edit_view', $product->id)}}">Edit</a></button>
+                                <button class="btn"><a class="text-white" href="{{ route('edit_view', $product->id) }}">Edit</a></button>
+                                <!-- Delete Button -->
+                                <form action="{{ route('delete_product', $product->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                </form>
                             </td> 
                         </tr>
                         @endforeach
                     </tbody>
+                    
                 </table>
             </div>
            

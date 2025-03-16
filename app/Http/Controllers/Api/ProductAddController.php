@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsImport;
 
 class ProductAddController extends Controller
 {
@@ -79,5 +81,50 @@ class ProductAddController extends Controller
         // Return the product data if found
         return response()->json(['product' => $product]);
     }
+
+
+
+    public function uploadCSV(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt,xlsx,xls|max:2048',
+          'images' => 'required|array',
+          'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp,tiff,heif',
+        ]);
+        
+       $shop = auth()->user()->shop;
+        
+       Excel::import(new ProductsImport($shop->id), $request->file('file'));
+        
+       if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $fileName = $image->getClientOriginalName();
+                $destinationPath = public_path('uploads/products');
+        
+                // Check if the file already exists
+                if (!file_exists($destinationPath . '/' . $fileName)) {
+                    // Move the file to the destination directory
+                    $image->move($destinationPath, $fileName);
+                } else {
+                    // Skip this file (or log a message)
+                    \Log::info("File already exists: " . $fileName);
+                }
+            }
+        }
+        
+        return back()->with('success', 'Products imported successfully.');
+    }
+       
+// In ProductController.php
+
+public function destroy($id)
+{
+     $product = Product::findOrFail($id);
+
+    $product->delete();
+
+   return  back()->with('success', 'Products delete successfully.');
+}
+
     
 }

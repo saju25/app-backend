@@ -22,6 +22,8 @@ Route::get('/', function () {
 //     return view('emails.welcome');
 // });
 
+
+
 Route::get('/payment-fail', function () { return view('payment-fail');});
 Route::get('/payment-view/{id}/{uniqueid}', [PaymentController::class, 'paymentsuccess'])->name('payment_success');
 
@@ -36,6 +38,11 @@ Route::get('/resend-otp/{user}', [RegisteredUserController::class, 'resendOtp'])
 
 
 Route::middleware('auth','verified')->group(function () {
+
+    Route::get('/upload-csv', function () { return view('upload-csv');  })->name('upload.product');;
+    Route::post('/upload-csv', [ProductAddController::class, 'uploadCSV'])->name('upload.csv');
+
+
     Route::get('/dashboard', function () {return view('dashboard'); })->name('dashboard');  
 
     
@@ -44,6 +51,7 @@ Route::middleware('auth','verified')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/add-product', [ProductAddController::class, 'formShow'])->name('product.show');
     Route::post('/add-product', [ProductAddController::class, 'store'])->name('products.store');
+    Route::delete('/product/{id}', [ProductAddController::class, 'destroy'])->name('delete_product');
     Route::get('/add-shop', [ShopController::class, 'formShow'])->name('shop.show');
     Route::post('/add-shop', [ShopController::class, 'store'])->name('shops.store');
 
