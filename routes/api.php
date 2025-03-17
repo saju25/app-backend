@@ -39,13 +39,12 @@ Route::post('/password-change-by-otp/{id}', [RegisterController::class, 'passwor
  Route::post('/device', [UserController::class, 'store']);
  Route::get('/message', [UserController::class, 'getMessage'])->name('message');
  Route::post('/message', [UserController::class, 'message'])->name('storeMessage');
+ Route::post('/register', [RegisterController::class, 'store']);
+ Route::post('/login', [LoginController::class, 'login'])->name('api-login');
 
 
-
-
-        Route::post('/register', [RegisterController::class, 'store']);
-        Route::post('/login', [LoginController::class, 'login'])->name('api-login');
-        Route::middleware('auth:sanctum')->group(function () {
+ 
+ Route::middleware('auth:sanctum')->group(function () {
    
     // User-related routes
     Route::get('/user', [UserController::class, 'getUserData']);
